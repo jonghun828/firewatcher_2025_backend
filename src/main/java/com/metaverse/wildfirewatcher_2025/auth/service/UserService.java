@@ -24,19 +24,19 @@ public class UserService {
     }
 
     //로그인 회원가입
-    @Transactional
-    public Long addUser(UserRequestDto dto){
-        if (userRepository.existsByUsername(dto.getUsername())) {
-            throw new IllegalArgumentException("username is already taken");
-        }
-
-        User user = User.builder()
-                .username(dto.getUsername())
-                .password(passwordEncoder.encode(dto.getPassword()))
-                .phone_number(dto.getPhone_number())
-                .email(dto.getEmail())
-                .build();
-    }
+//    @Transactional
+//    public Long addUser(UserRequestDto dto){
+//        if (userRepository.existsByUsername(dto.getUsername())) {
+//            throw new IllegalArgumentException("username is already taken");
+//        }
+//
+//        User user = User.builder()
+//                .username(dto.getUsername())
+//                .password(passwordEncoder.encode(dto.getPassword()))
+//                .phone_number(dto.getPhone_number())
+//                .email(dto.getEmail())
+//                .build();
+//    }
     //로그인
 
     //로그인 회원정보 수정
