@@ -38,6 +38,6 @@ public class User extends TimeStamped {
     @Column(nullable = false)
     private int zone_id;
 
-    @OneToMany(mappedBy = "user")
-    List<Notice> notices =  new ArrayList<>();
+//    @OneToMany(mappedBy = "user")
+//    List<Notice> notices =  new ArrayList<>();
 }
