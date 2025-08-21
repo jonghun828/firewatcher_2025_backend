@@ -15,7 +15,6 @@ public class NoticeResponseDto extends TimeStamped {
     private Long id;
     private String title;
     private String content;
-    private String user_id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createAt;
