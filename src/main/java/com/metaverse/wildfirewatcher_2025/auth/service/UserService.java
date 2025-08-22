@@ -3,25 +3,24 @@ package com.metaverse.wildfirewatcher_2025.auth.service;
 import com.metaverse.wildfirewatcher_2025.auth.domain.User;
 import com.metaverse.wildfirewatcher_2025.auth.dto.UserRequestDto;
 import com.metaverse.wildfirewatcher_2025.auth.repository.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class UserService {
-    private PasswordEncoder passwordEncoder;
-    private UserRepository userRepository;
+//    private PasswordEncoder passwordEncoder;
+//    private UserRepository userRepository;
 
-    public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
+    public UserService() {
+//        this.passwordEncoder = passwordEncoder;
+//        this.userRepository = userRepository;
     }
 
     //로그인 회원가입(존재 여부)
-    @Transactional(readOnly = true)
-    public boolean existUser(UserRequestDto dto){
-        return userRepository.existsByUsername(dto.getUsername());
-    }
+//    @Transactional(readOnly = true)
+//    public boolean existUser(UserRequestDto dto){
+//        return userRepository.existsByUsername(dto.getUsername());
+//    }
 
     //로그인 회원가입
 //    @Transactional
