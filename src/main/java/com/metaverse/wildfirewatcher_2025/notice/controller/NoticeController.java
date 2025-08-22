@@ -1,10 +1,8 @@
 package com.metaverse.wildfirewatcher_2025.notice.controller;
 
-import com.metaverse.wildfirewatcher_2025.notice.domain.Notice;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeRequestDto;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeResponseDto;
 import com.metaverse.wildfirewatcher_2025.notice.service.NoticeService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -59,15 +57,17 @@ public class NoticeController {
 
     //공지사항 수정
     @PutMapping("/notices/{id}")
-    public Long updateNotice(
+    public ResponseEntity<NoticeResponseDto> updateNotice(
         @PathVariable Long id,
         @RequestBody NoticeRequestDto noticeRequestDto){
-        return noticeService.updateNotice(id, noticeRequestDto);
+        NoticeResponseDto updatedNotice = noticeService.updateNotice(id, noticeRequestDto);
+        return ResponseEntity.ok(updatedNotice);
     }
 
     //공지사항 삭제
     @DeleteMapping("/notices/{id}")
-    public Long deleteNotice(@PathVariable Long id){
-        return noticeService.deleteNotice(id);
+    public ResponseEntity<Void> deleteNotice(@PathVariable Long id){
+        noticeService.deleteNotice(id);
+        return ResponseEntity.noContent().build();
     }
 }

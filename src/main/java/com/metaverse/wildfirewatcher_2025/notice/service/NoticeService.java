@@ -21,6 +21,7 @@ public class NoticeService {
     public NoticeService(NoticeRepository noticeRepository) {this.noticeRepository = noticeRepository;}
 
     //테스트
+    @Transactional
     public List<NoticeResponseDto> getNoticess(){
         List<NoticeResponseDto> responseList = noticeRepository.findAllByOrderByCreatedAtDesc().stream().map(NoticeResponseDto::new).toList();
         return responseList;
@@ -34,6 +35,7 @@ public class NoticeService {
     }
 
     //공지사항 생성.
+    @Transactional
     public NoticeResponseDto createNotice(NoticeRequestDto noticeRequestDto) {
         Notice notice = new Notice(noticeRequestDto);
         Notice savedNotice = noticeRepository.save(notice);
@@ -44,13 +46,14 @@ public class NoticeService {
 
     //공지사항 수정.
     @Transactional
-    public Long updateNotice(Long id, NoticeRequestDto noticeRequestDto) {
+    public NoticeResponseDto updateNotice(Long id, NoticeRequestDto noticeRequestDto) {
         Notice notice = findNotice(id);
         notice.update(noticeRequestDto);
-        return id;
+        return new NoticeResponseDto(notice);
     }
 
     //공지사항 삭제.
+    @Transactional
     public Long deleteNotice(Long id) {
         Notice notice = findNotice(id);
         noticeRepository.delete(notice);
