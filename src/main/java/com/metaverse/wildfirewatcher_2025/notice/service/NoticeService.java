@@ -20,18 +20,11 @@ public class NoticeService {
     @Autowired
     public NoticeService(NoticeRepository noticeRepository) {this.noticeRepository = noticeRepository;}
 
-    //테스트
-    @Transactional
-    public List<NoticeResponseDto> getNoticess(){
-        List<NoticeResponseDto> responseList = noticeRepository.findAllByOrderByCreatedAtDesc().stream().map(NoticeResponseDto::new).toList();
-        return responseList;
-    }
-
     //공지사항 전체 조회.
     @Transactional(readOnly = true)
-    public Page<NoticeResponseDto> getNotices(Pageable pageable) {
-        Page<Notice> noticePage = noticeRepository.findAll(pageable);
-        return noticePage.map(NoticeResponseDto::new);
+    public List<NoticeResponseDto> getNotices(){
+        List<NoticeResponseDto> responseList = noticeRepository.findAllByOrderByCreatedAtDesc().stream().map(NoticeResponseDto::new).toList();
+        return responseList;
     }
 
     //공지사항 생성.
