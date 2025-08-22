@@ -1,17 +1,11 @@
 package com.metaverse.wildfirewatcher_2025.notice.domain;
 
-import com.metaverse.wildfirewatcher_2025.auth.domain.User;
-import com.metaverse.wildfirewatcher_2025.comment.domain.Comment;
 import com.metaverse.wildfirewatcher_2025.common.domain.TimeStamped;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.aspectj.weaver.ast.Not;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -29,6 +23,9 @@ public class Notice extends TimeStamped {
     @Column
     private String content;
 
+    @Column
+    private boolean important;
+
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id", nullable = false)
 //    private User user;
@@ -36,17 +33,22 @@ public class Notice extends TimeStamped {
 //    @OneToMany(mappedBy = "notice", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Comment> comments = new ArrayList<>();
 
-    @Column
-    private boolean is_important;
-
     public Notice(NoticeRequestDto noticeRequestDto) {
         this.title = noticeRequestDto.getTitle();
         this.content = noticeRequestDto.getContent();
+        this.important = noticeRequestDto.isImportant();
+    }
+
+    public Notice(String title, String content, boolean important) {
+        this.title = title;
+        this.content = content;
+        this.important = important;
     }
 
     public void update(NoticeRequestDto noticeRequestDto){
         this.title = noticeRequestDto.getTitle();
         this.content = noticeRequestDto.getContent();
+        this.important = noticeRequestDto.isImportant();
     }
 
 }
