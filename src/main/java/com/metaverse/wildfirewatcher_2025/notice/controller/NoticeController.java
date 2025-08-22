@@ -28,18 +28,12 @@ public class NoticeController {
         return("asdf");
     }
 
-    @GetMapping("/getnotices")
-    public List<NoticeResponseDto> getNoticess(){
-        return noticeService.getNoticess();
-    }
-
     //공지사항 전체 불러오기
     @GetMapping("/notices")
-    public ResponseEntity<NoticeResponseDto> getNotices(
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable
-    ){
-        Page<NoticeResponseDto> noticeResponseDtoPage = noticeService.getNotices(pageable);
-        return ResponseEntity.ok((NoticeResponseDto) noticeResponseDtoPage);
+    public ResponseEntity<List<NoticeResponseDto>> getNotices(){
+
+        List<NoticeResponseDto> noticesList = noticeService.getNotices();
+        return ResponseEntity.ok((noticesList));
     }
 
     //공지시항 id를 통해 불러오기
