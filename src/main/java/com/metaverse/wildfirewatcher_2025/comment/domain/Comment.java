@@ -22,6 +22,9 @@ public class Comment extends TimeStamped {
     private  Long id;
 
     @Column
+    private Long notice_id;
+
+    @Column
     private String content;
 
     @Column
