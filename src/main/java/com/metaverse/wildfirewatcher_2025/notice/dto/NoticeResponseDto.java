@@ -1,6 +1,7 @@
 package com.metaverse.wildfirewatcher_2025.notice.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.metaverse.wildfirewatcher_2025.comment.domain.Comment;
 import com.metaverse.wildfirewatcher_2025.comment.dto.CommentResponseDto;
 import com.metaverse.wildfirewatcher_2025.common.domain.TimeStamped;
 import com.metaverse.wildfirewatcher_2025.notice.domain.Notice;
@@ -37,4 +38,6 @@ public NoticeResponseDto(Notice notice) {
 
 }
 
+    public NoticeResponseDto(Comment comment) {
+    }
 }

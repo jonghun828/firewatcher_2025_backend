@@ -3,10 +3,6 @@ package com.metaverse.wildfirewatcher_2025.notice.controller;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeRequestDto;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeResponseDto;
 import com.metaverse.wildfirewatcher_2025.notice.service.NoticeService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +16,6 @@ public class NoticeController {
 
     public NoticeController(NoticeService noticeService) {
         this.noticeService = noticeService;
-    }
-
-    //test
-    @GetMapping("/test")
-    public String noticeTest(){
-        return("asdf");
     }
 
     //공지사항 전체 불러오기
