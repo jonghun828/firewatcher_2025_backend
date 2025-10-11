@@ -24,6 +24,9 @@ public class User extends TimeStamped {
     private String username;
 
     @Column(nullable = false)
+    private String author;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, unique = true)
@@ -38,6 +41,18 @@ public class User extends TimeStamped {
     @Column(nullable = false)
     private int zone_id;
 
-//    @OneToMany(mappedBy = "user")
-//    List<Notice> notices =  new ArrayList<>();
+    @Column(name = "user_role")
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Notice> notices =  new ArrayList<>();
+
+    public User(String username, String author, String encode, String email, UserRole userRole) {
+        this.username = username;
+        this.author = author;
+        this.password = password;
+        this.email = email;
+        this.userRole = userRole;
+    }
 }

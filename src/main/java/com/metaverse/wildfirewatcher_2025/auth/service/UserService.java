@@ -1,46 +1,38 @@
 package com.metaverse.wildfirewatcher_2025.auth.service;
 
 import com.metaverse.wildfirewatcher_2025.auth.domain.User;
-import com.metaverse.wildfirewatcher_2025.auth.dto.UserRequestDto;
+import com.metaverse.wildfirewatcher_2025.auth.domain.UserRole;
+import com.metaverse.wildfirewatcher_2025.auth.dto.SignUpRequestDto;
 import com.metaverse.wildfirewatcher_2025.auth.repository.UserRepository;
-import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-//@Service
+@Service
+@RequiredArgsConstructor
 public class UserService {
-//    private PasswordEncoder passwordEncoder;
-//    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService() {
-//        this.passwordEncoder = passwordEncoder;
-//        this.userRepository = userRepository;
+    @Transactional
+    public void registerUser(SignUpRequestDto signUpRequestDto) {
+        if (userRepository.existsByUsername(signUpRequestDto.getUsername())) {
+            throw new IllegalArgumentException("Username 사용자 계정이 사용중입니다.");
+        }
+
+        if (userRepository.existsByEmail(signUpRequestDto.getEmail())) {
+            throw new IllegalArgumentException("Email 사용자 이메일이 사용중입니다.");
+        }
+
+        User user = new User(
+                signUpRequestDto.getUsername(),
+                signUpRequestDto.getAuthor(),
+                passwordEncoder.encode(signUpRequestDto.getPassword()),
+                signUpRequestDto.getEmail(),
+                UserRole.ROLE_USER
+        );
+
+        userRepository.save(user);
     }
-
-    //로그인 회원가입(존재 여부)
-//    @Transactional(readOnly = true)
-//    public boolean existUser(UserRequestDto dto){
-//        return userRepository.existsByUsername(dto.getUsername());
-//    }
-
-    //로그인 회원가입
-//    @Transactional
-//    public Long addUser(UserRequestDto dto){
-//        if (userRepository.existsByUsername(dto.getUsername())) {
-//            throw new IllegalArgumentException("username is already taken");
-//        }
-//
-//        User user = User.builder()
-//                .username(dto.getUsername())
-//                .password(passwordEncoder.encode(dto.getPassword()))
-//                .phone_number(dto.getPhone_number())
-//                .email(dto.getEmail())
-//                .build();
-//    }
-    //로그인
-
-    //로그인 회원정보 수정
-
-    //로그인 회원 탈퇴
-
-    //유저 정보 조회
 }
