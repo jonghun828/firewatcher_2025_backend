@@ -30,7 +30,9 @@ public class UserService {
                 signUpRequestDto.getAuthor(),
                 passwordEncoder.encode(signUpRequestDto.getPassword()),
                 signUpRequestDto.getEmail(),
-                UserRole.ROLE_USER
+                UserRole.ROLE_USER,
+                signUpRequestDto.getPhone_number(),
+                signUpRequestDto.getZone_id()
         );
 
         userRepository.save(user);

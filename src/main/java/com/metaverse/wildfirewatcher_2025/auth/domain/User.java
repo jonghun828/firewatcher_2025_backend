@@ -18,7 +18,7 @@ import java.util.List;
 public class User extends TimeStamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long user_id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -36,9 +36,6 @@ public class User extends TimeStamped {
     private String phone_number;
 
     @Column(nullable = false)
-    private int role_id;
-
-    @Column(nullable = false)
     private int zone_id;
 
     @Column(name = "user_role")
@@ -48,7 +45,17 @@ public class User extends TimeStamped {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Notice> notices =  new ArrayList<>();
 
-    public User(String username, String author, String encode, String email, UserRole userRole) {
+    public User(String username, String author, String password, String email, UserRole userRole, String phone_number, int zone_id) {
+        this.username = username;
+        this.author = author;
+        this.password = password;
+        this.email = email;
+        this.userRole = userRole;
+        this.phone_number = phone_number;
+        this.zone_id = zone_id;
+    }
+
+    public User(String username, String author, String password, String email, UserRole userRole) {
         this.username = username;
         this.author = author;
         this.password = password;

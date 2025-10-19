@@ -34,7 +34,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // OAuth2User로부터 email, name(nickname) 등 속성 가져오기
         Map<String, Object> attributes = oauth2User.getAttributes();
         String email = (String) attributes.get("email");
-        String nickname = (String) attributes.get("name");
+        String author = (String) attributes.get("name");
 
         // 우리 시스템의 username (소셜 제공자_소셜 ID)
         String username = registrationId + "_" + oauth2Id;
@@ -44,7 +44,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .orElseGet(() -> {
                     User newUser = new User(
                             username,
-                            nickname,
+                            author,
                             passwordEncoder.encode(UUID.randomUUID().toString()), // 임시 비밀번호
                             email,
                             UserRole.ROLE_USER // 기본 역할
