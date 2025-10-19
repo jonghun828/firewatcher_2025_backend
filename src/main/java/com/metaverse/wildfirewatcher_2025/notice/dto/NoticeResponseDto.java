@@ -18,6 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 public class NoticeResponseDto extends TimeStamped {
     private Long id;
+    private String user_name;
+    private String author;
     private String title;
     private String content;
     private boolean important;
@@ -35,7 +37,10 @@ public NoticeResponseDto(Notice notice) {
     this.createdAt = notice.getCreatedAt();
     this.modifiedAt = notice.getModifiedAt();
 
-
+    if(notice.getUser() != null) {
+        this.user_name = notice.getUser().getUsername();
+        this.author = notice.getUser().getAuthor();
+    }
 }
 
     public NoticeResponseDto(Comment comment) {

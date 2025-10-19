@@ -1,11 +1,14 @@
 package com.metaverse.wildfirewatcher_2025.notice.domain;
 
+import com.metaverse.wildfirewatcher_2025.auth.domain.User;
 import com.metaverse.wildfirewatcher_2025.common.domain.TimeStamped;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+
 
 @Getter
 @Setter
@@ -26,9 +29,9 @@ public class Notice extends TimeStamped {
     @Column
     private boolean important;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 //
 //    @OneToMany(mappedBy = "notice", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Comment> comments = new ArrayList<>();
@@ -39,10 +42,11 @@ public class Notice extends TimeStamped {
         this.important = noticeRequestDto.isImportant();
     }
 
-    public Notice(String title, String content, boolean important) {
+    public Notice(String title, String content, boolean important, User user) {
         this.title = title;
         this.content = content;
         this.important = important;
+        this.user = user;
     }
 
     public void update(NoticeRequestDto noticeRequestDto){
