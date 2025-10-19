@@ -3,9 +3,14 @@ package com.metaverse.wildfirewatcher_2025.device.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.metaverse.wildfirewatcher_2025.common.domain.TimeStamped;
 import com.metaverse.wildfirewatcher_2025.device.domain.Device;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class DeviceResponseDto extends TimeStamped {
     private Long id;
     private String device_type;
