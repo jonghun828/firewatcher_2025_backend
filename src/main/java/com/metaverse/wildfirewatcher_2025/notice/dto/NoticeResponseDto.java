@@ -1,17 +1,16 @@
 package com.metaverse.wildfirewatcher_2025.notice.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.metaverse.wildfirewatcher_2025.comment.domain.Comment;
 import com.metaverse.wildfirewatcher_2025.comment.dto.CommentResponseDto;
 import com.metaverse.wildfirewatcher_2025.common.domain.TimeStamped;
 import com.metaverse.wildfirewatcher_2025.notice.domain.Notice;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
@@ -29,6 +28,8 @@ public class NoticeResponseDto extends TimeStamped {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime modifiedAt;
 
+    private List<CommentResponseDto> comments;
+
 public NoticeResponseDto(Notice notice) {
     this.id = notice.getId();
     this.title = notice.getTitle();
@@ -41,8 +42,13 @@ public NoticeResponseDto(Notice notice) {
         this.user_name = notice.getUser().getUsername();
         this.author = notice.getUser().getAuthor();
     }
-}
 
-    public NoticeResponseDto(Comment comment) {
+    if (notice.getComments() != null) {
+        this.comments = notice.getComments().stream()
+                .map(CommentResponseDto::new)
+                .collect(Collectors.toList());
+    } else {
+        this.comments = List.of();
+        }
     }
 }

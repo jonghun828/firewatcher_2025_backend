@@ -4,21 +4,9 @@ import com.metaverse.wildfirewatcher_2025.auth.domain.PrincipalDetails;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeRequestDto;
 import com.metaverse.wildfirewatcher_2025.notice.dto.NoticeResponseDto;
 import com.metaverse.wildfirewatcher_2025.notice.service.NoticeService;
-import com.metaverse.wildfirewatcher_2025.auth.dto.AuthResponseDto;
-import com.metaverse.wildfirewatcher_2025.auth.dto.LoginRequestDto;
-import com.metaverse.wildfirewatcher_2025.auth.dto.SignUpRequestDto;
-import com.metaverse.wildfirewatcher_2025.auth.service.UserService; // AuthService 임포트
-import com.metaverse.wildfirewatcher_2025.auth.util.JwtUtil;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

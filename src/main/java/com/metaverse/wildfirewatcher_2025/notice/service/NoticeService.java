@@ -87,6 +87,13 @@ public class NoticeService {
         );
     }
 
+    //게시글 존재 여부 확인.
+    public Notice getVaildNotice(Long id) {
+        return noticeRepository.findById(id).orElseThrow(()->
+                new IllegalArgumentException("해당 게시물은 존재하지 않습니다.")
+        );
+    }
+
     //작성자 동일 여부 확인.
     private void checkArticleOwnership(Notice notice, PrincipalDetails principalDetails) {
         if (!notice.getUser().getUser_id().equals(principalDetails.getUser().getUser_id())) {
