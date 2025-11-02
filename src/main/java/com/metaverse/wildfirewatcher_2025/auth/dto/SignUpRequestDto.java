@@ -26,8 +26,8 @@ public class SignUpRequestDto {
     @Email(message = "유효한 이메일 형식이 아닙니다.")
     private String email;
 
-    @Size(min = 11, max = 11, message = "제대로된 전화번호를 입력하세요.")
-    private String phone_number;
+    @Size(min = 10, max = 11, message = "제대로된 전화번호를 입력하세요.")
+    private String phoneNumber;
 
     private int zone_id;
 }

@@ -10,6 +10,7 @@ import io.jsonwebtoken.io.Decoders;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -86,6 +87,16 @@ public class JwtUtil {
         final String username = extractUsername(token);
         // 토큰 사용자 이름과 UserDetails 사용자 이름이 일치하고, 토큰이 만료되지 않았는지 확인
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    // 토큰 유효성 검증 (토큰만 받음.)
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException ex) {
+            return false;
+        }
     }
 
     // 토큰 만료 여부 확인
