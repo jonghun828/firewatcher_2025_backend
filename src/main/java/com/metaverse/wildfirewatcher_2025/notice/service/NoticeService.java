@@ -96,7 +96,7 @@ public class NoticeService {
 
     //작성자 동일 여부 확인.
     private void checkArticleOwnership(Notice notice, PrincipalDetails principalDetails) {
-        if (!notice.getUser().getUser_id().equals(principalDetails.getUser().getUser_id())) {
+        if (!notice.getUser().getUserId().equals(principalDetails.getUser().getUserId())) {
             throw new IllegalArgumentException("게시글은 작성자만 수정하거나 삭제할 수 있습니다.");
         }
     }

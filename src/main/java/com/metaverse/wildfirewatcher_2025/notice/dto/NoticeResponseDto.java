@@ -30,25 +30,25 @@ public class NoticeResponseDto extends TimeStamped {
 
     private List<CommentResponseDto> comments;
 
-public NoticeResponseDto(Notice notice) {
-    this.id = notice.getId();
-    this.title = notice.getTitle();
-    this.content = notice.getContent();
-    this.important = notice.isImportant();
-    this.createdAt = notice.getCreatedAt();
-    this.modifiedAt = notice.getModifiedAt();
+    public NoticeResponseDto(Notice notice) {
+        this.id = notice.getId();
+        this.title = notice.getTitle();
+        this.content = notice.getContent();
+        this.important = notice.isImportant();
+        this.createdAt = notice.getCreatedAt();
+        this.modifiedAt = notice.getModifiedAt();
 
-    if(notice.getUser() != null) {
-        this.user_name = notice.getUser().getUsername();
-        this.author = notice.getUser().getAuthor();
-    }
-
-    if (notice.getComments() != null) {
-        this.comments = notice.getComments().stream()
-                .map(CommentResponseDto::new)
-                .collect(Collectors.toList());
-    } else {
-        this.comments = List.of();
+        if(notice.getUser() != null) {
+            this.user_name = notice.getUser().getUsername();
+            this.author = notice.getUser().getAuthor();
         }
-    }
+
+        if (notice.getComments() != null) {
+            this.comments = notice.getComments().stream()
+                    .map(CommentResponseDto::new)
+                    .collect(Collectors.toList());
+        } else {
+            this.comments = List.of();
+            }
+        }
 }
