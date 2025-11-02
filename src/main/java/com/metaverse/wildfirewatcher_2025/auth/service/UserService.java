@@ -31,7 +31,7 @@ public class UserService {
                 passwordEncoder.encode(signUpRequestDto.getPassword()),
                 signUpRequestDto.getEmail(),
                 UserRole.ROLE_USER,
-                signUpRequestDto.getPhone_number(),
+                signUpRequestDto.getPhoneNumber(),
                 signUpRequestDto.getZone_id()
         );
 
