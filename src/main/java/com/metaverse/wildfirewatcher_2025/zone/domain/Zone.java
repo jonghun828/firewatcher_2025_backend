@@ -30,7 +30,6 @@ public class Zone extends TimeStamped {
     @Column
     private String areaName;
 
-
     @Column
     private String areaIpAddress;
 

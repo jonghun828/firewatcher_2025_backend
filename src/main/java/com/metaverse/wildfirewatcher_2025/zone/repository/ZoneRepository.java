@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ZoneRepository extends JpaRepository<Zone, Long> {
     List<Zone> findByAreaId(int area_id);
+    Zone findZoneById(Long id);
 }

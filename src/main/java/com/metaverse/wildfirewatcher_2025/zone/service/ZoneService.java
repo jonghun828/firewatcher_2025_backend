@@ -51,7 +51,7 @@ public class ZoneService {
         zoneRepository.delete(zone);
     }
 
-    private Zone findZone(Long id) {
+    public Zone findZone(Long id) {
         return zoneRepository.findById(id).orElseThrow(()->
                 new IllegalArgumentException("해당 Zone은 존재하지 않습니다.")
         );
