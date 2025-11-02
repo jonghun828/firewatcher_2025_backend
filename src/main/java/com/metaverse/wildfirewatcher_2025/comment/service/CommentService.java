@@ -28,20 +28,11 @@ public class CommentService {
         User logined_user = principalDetails.getUser();
 
         Comment comment;
-        if (commentRequestDto.getParentCommentId() != null) {
-            Comment parentComment = getValidParentComment(commentRequestDto.getParentCommentId(), notice);
-            comment = new Comment(
-                    commentRequestDto.getContent(),
-                    notice,
-                    parentComment,
-                    logined_user
-            );
-        } else {
-            comment = new Comment(
-                    commentRequestDto.getContent(),
-                    notice,
-                    logined_user);
-        }
+        comment = new Comment(
+            commentRequestDto.getContent(),
+            notice,
+            logined_user
+        );
 
         Comment savedComment = commentRepository.save(comment);
         return new CommentResponseDto(savedComment);
@@ -101,7 +92,7 @@ public class CommentService {
 
     //작성자 동일 여부 확인.
     private void checkArticleOwnership(Comment comment, PrincipalDetails principalDetails) {
-        if (!comment.getUser().getUser_id().equals(principalDetails.getUser().getUser_id())) {
+        if (!comment.getUser().getUserId().equals(principalDetails.getUser().getUserId())) {
             throw new IllegalArgumentException("댓글은 작성자만 수정하거나 삭제할 수 있습니다.");
         }
     }

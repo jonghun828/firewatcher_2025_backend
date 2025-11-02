@@ -13,13 +13,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentResponseDto extends TimeStamped {
-
     private Long id;
     private String content;
     private String author;
     private String user_name;
     private Long notice_id;
-    private Long parentCommentId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
@@ -35,8 +33,6 @@ public class CommentResponseDto extends TimeStamped {
         } else {
             this.notice_id = null;
         }
-
-        this.parentCommentId = (comment.getParentComment() != null) ? comment.getParentComment().getId() : null;
 
         this.createdAt = comment.getCreatedAt();
         this.modifiedAt = comment.getModifiedAt();
